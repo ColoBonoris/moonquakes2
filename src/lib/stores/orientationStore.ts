@@ -1,4 +1,4 @@
-import { controlManager } from '../../routes/moon/setup';
+import { controlManager } from '$lib/components/Moon/setup';
 import { writable } from 'svelte/store';
 
 interface RotationAnlges {
