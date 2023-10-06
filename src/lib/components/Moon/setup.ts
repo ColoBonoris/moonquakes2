@@ -1,15 +1,15 @@
 import { Clock, type Group } from 'three';
-import { camera } from '$three/camera';
-import { renderer } from '$three/renderer';
-import { scene } from '$three/scene';
-import { createMoon, createMoonEdges } from '$three/moon';
-import { earth } from '$three/celestialbodys/earth';
-import { sun } from '$three/celestialbodys/sun';
-import { cameraControls, ControlManager, initControls } from '$three/controls';
-import { addLights, toNormalMode, toSimulationMode } from '$three/light';
-import { QuakesManager } from '$three/quakes/quakesManager';
-import { TimeLine } from '$three/timeline';
-import { RaycasterManager } from '$three/labels/raycaster';
+import { camera } from '$lib/three/camera';
+import { renderer } from '$lib/three/renderer';
+import { scene } from '$lib/three/scene';
+import { createMoon, createMoonEdges } from '$lib/three/moon';
+import { earth } from '$lib/three/celestialbodys/earth';
+import { sun } from '$lib/three/celestialbodys/sun';
+import { cameraControls, ControlManager, initControls } from '$lib/three/controls';
+import { addLights, toNormalMode, toSimulationMode } from '$lib/three/light';
+import { QuakesManager } from '$lib/three/quakes/quakesManager';
+import { TimeLine } from '$lib/three/timeline';
+import { RaycasterManager } from '$lib/three/labels/raycaster';
 import { getNormalizedData } from '$lib/utils/normalizeQuakeSample';
 import realSample from "$data/quakes_sample.json";
 

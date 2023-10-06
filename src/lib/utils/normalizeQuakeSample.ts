@@ -1,4 +1,4 @@
-import type { QuakeData, RawQuakeData } from '$three/quakes/types';
+import type { QuakeData, RawQuakeData } from '$lib/three/quakes/types';
 
 export function getNormalizedData(sample: RawQuakeData) {
   const result: QuakeData[] = [];

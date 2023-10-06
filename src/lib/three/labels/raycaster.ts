@@ -1,5 +1,5 @@
 import { Camera, Raycaster, Scene, Vector2 } from 'three';
-import { RAYCASTER_CHANNEL } from '$three/constants';
+import { RAYCASTER_CHANNEL } from '$lib/three/constants';
 
 
 class RaycasterManager {

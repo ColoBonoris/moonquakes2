@@ -1,5 +1,5 @@
-import { RAYCASTER_CHANNEL, UNIT_TO_KM } from '$three/constants';
-import { MOON_UNIT_RADIUS } from '$three/moon';
+import { RAYCASTER_CHANNEL, UNIT_TO_KM } from '$lib/three/constants';
+import { MOON_UNIT_RADIUS } from '$lib/three/moon';
 import { BoxGeometry, Color, MathUtils, Mesh, MeshBasicMaterial, PlaneGeometry, ShaderMaterial } from 'three';
 import type { QuakeData, QuakeType } from './types';
 import { Pulse } from './wave/Pulse';

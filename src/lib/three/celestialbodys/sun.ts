@@ -1,4 +1,4 @@
-import * as CONST from '$three/constants';
+import * as CONST from '$lib/three/constants';
 import { Mesh, MeshBasicMaterial, SphereGeometry, TextureLoader } from 'three'
 
 // from: https://en.wikipedia.org/wiki/Solar_radius
@@ -22,7 +22,7 @@ const textureLoader = new TextureLoader();
 const material = new MeshBasicMaterial({
   // color: `hsl(63, 100%, 50%)`,
   // wireframe: true,
-  map: textureLoader.load(`assets/sun_low_res.jpg`)
+  map: textureLoader.load(`/img/assets/sun_low_res.jpg`)
 });
 
 const sun = new Mesh(geometry, material);

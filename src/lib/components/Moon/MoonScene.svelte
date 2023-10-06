@@ -1,6 +1,6 @@
 <script lang="ts">
     import { orientation } from "$lib/stores/orientationStore";
-    import { toggleMoonInterior, toggleMoonWireframe } from "$three/moon";
+    import { toggleMoonInterior, toggleMoonWireframe } from "$lib/three/moon";
     import { onMount } from "svelte";
     import {
       animate,

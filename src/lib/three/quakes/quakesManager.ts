@@ -1,5 +1,5 @@
-import type { RaycasterManager } from '$three/labels/raycaster';
-import { MOON_UNIT_RADIUS } from '$three/moon';
+import type { RaycasterManager } from '$lib/three/labels/raycaster';
+import { MOON_UNIT_RADIUS } from '$lib/three/moon';
 import type { Object3D, Scene } from 'three';
 import { createMesh, Quake } from './quake';
 import type { QuakeData } from './types';

@@ -1,4 +1,4 @@
-import * as CONST from '$three/constants';
+import * as CONST from '$lib/three/constants';
 import { Mesh, MeshBasicMaterial, MeshStandardMaterial, SphereGeometry, TextureLoader } from 'three'
 
 // from: https://en.wikipedia.org/wiki/Earth_radius
@@ -23,7 +23,7 @@ const textureLoader = new TextureLoader();
 const material = new MeshStandardMaterial({
   // color: `hsl(200, 100%, 50%)`,
   // wireframe: true,
-  map: textureLoader.load(`assets/earth.jpg`)
+  map: textureLoader.load(`img/assets/earth.jpg`)
 });
 
 const earth = new Mesh(geometry, material);
