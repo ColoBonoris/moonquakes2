@@ -36,50 +36,52 @@
   </script>
   
   <svelte:window on:resize={onWindowResize} />
+  <main class="w-full h-full absolute right-0 top-0 z-10">
+    <div use:initilize/>
+    <div id="labels" bind:this={labels} />
+    
+    <div class="tools" style:top={0}>
+      <button on:click={toggleMoonWireframe}>Toggle wireframe</button>
+      <button on:click={toggleMoonInterior}>Toggle interior</button>
+      <button on:click={toggleContext}>Enable context</button>
+      <button on:click={toggleQuakes}>Show quakes</button>
+    </div>
+    <div class="left-bottom">
+      <button on:click={orientation.toggle}>Toggle Giroscopic</button>
+      <button on:click={controlManager.resetOrientation}>reset</button>
+    </div>
+    <div class="rotation">
+      <button
+        style="bottom:-3.5rem"
+        on:pointerdown={() => controlManager.setRotation(["down"])}
+        on:pointerup={() => controlManager.unsetRotation(["down"])}>-</button
+      >
+      <button
+        style="top:-3.5rem"
+        on:pointerdown={() => controlManager.setRotation(["down"])}
+        on:pointerup={() => controlManager.unsetRotation(["down"])}>UP</button
+      >
+      <button
+        style="top:-3.5rem"
+        on:pointerdown={() => controlManager.setRotation(["down"])}
+        on:pointerup={() => controlManager.unsetRotation(["down"])}>+</button
+      >
+      <button
+        style="right:-4rem"
+        on:pointerdown={() => controlManager.setRotation(["right"])}
+        on:pointerup={() => controlManager.unsetRotation(["right"])}>LEFT</button
+      ><button
+        style="left:-2.5rem"
+        on:pointerdown={() => controlManager.setRotation(["up"])}
+        on:pointerup={() => controlManager.unsetRotation(["up"])}>DOWN</button
+      ><button
+        style="left:-6rem"
+        on:pointerdown={() => controlManager.setRotation(["left"])}
+        on:pointerup={() => controlManager.unsetRotation(["left"])}>LEFT</button
+      >
+    </div>
+  </main>
   
-  <main use:initilize class="w-full h-full absolute right-0 top-0"/>
-  <div id="labels" bind:this={labels} />
-  
-  <div class="tools" style:top={0}>
-    <button on:click={toggleMoonWireframe}>Toggle wireframe</button>
-    <button on:click={toggleMoonInterior}>Toggle interior</button>
-    <button on:click={toggleContext}>Enable context</button>
-    <button on:click={toggleQuakes}>Show quakes</button>
-  </div>
-  <div class="left-bottom">
-    <button on:click={orientation.toggle}>Toggle Giroscopic</button>
-    <button on:click={controlManager.resetOrientation}>reset</button>
-  </div>
-  <div class="rotation">
-    <button
-      style="bottom:-3.5rem"
-      on:pointerdown={() => controlManager.setRotation(["down"])}
-      on:pointerup={() => controlManager.unsetRotation(["down"])}>-</button
-    >
-    <button
-      style="top:-3.5rem"
-      on:pointerdown={() => controlManager.setRotation(["down"])}
-      on:pointerup={() => controlManager.unsetRotation(["down"])}>UP</button
-    >
-    <button
-      style="top:-3.5rem"
-      on:pointerdown={() => controlManager.setRotation(["down"])}
-      on:pointerup={() => controlManager.unsetRotation(["down"])}>+</button
-    >
-    <button
-      style="right:-4rem"
-      on:pointerdown={() => controlManager.setRotation(["right"])}
-      on:pointerup={() => controlManager.unsetRotation(["right"])}>LEFT</button
-    ><button
-      style="left:-2.5rem"
-      on:pointerdown={() => controlManager.setRotation(["up"])}
-      on:pointerup={() => controlManager.unsetRotation(["up"])}>DOWN</button
-    ><button
-      style="left:-6rem"
-      on:pointerdown={() => controlManager.setRotation(["left"])}
-      on:pointerup={() => controlManager.unsetRotation(["left"])}>LEFT</button
-    >
-  </div>
   
   <style>
     #labels {
@@ -96,6 +98,7 @@
       gap: 0.25rem;
       position: absolute;
       left: 0;
+      margin-top: 4rem;
       padding: 0.25rem;
       width: 100%;
     }

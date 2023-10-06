@@ -16,7 +16,7 @@
 <svelte:head>
     <title>Moonquakes, Visualized</title>
 </svelte:head>
-<main class=" w-full h-full max-w-full flex flex-column">
+<main class=" w-full h-full max-w-full flex flex-column z-10">
     <Navbar/>
     {#if configMenu}
         <ConfigMenu>
@@ -24,6 +24,6 @@
         </ConfigMenu>
     {/if}
     <!-- Do the same for all context menus, we're going to have listeners -->
-    <svelte:component this={Moon} class="w-full h-full"/>
+    <svelte:component this={Moon}/>
     <Footer/>
 </main>
