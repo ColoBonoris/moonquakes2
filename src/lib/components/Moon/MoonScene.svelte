@@ -37,7 +37,7 @@
   
   <svelte:window on:resize={onWindowResize} />
   
-  <main use:initilize />
+  <main use:initilize class="w-full h-full absolute right-0 top-0"/>
   <div id="labels" bind:this={labels} />
   
   <div class="tools" style:top={0}>
@@ -113,8 +113,8 @@
     }
     .rotation {
       position: absolute;
-      right: 0rem;
-      bottom: 0rem;
+      right: 0.5rem;
+      bottom: 0.5rem;
       display: grid;
       grid-template-columns: repeat(3, 2.75rem);
       grid-template-rows: repeat(2, 2.75rem);
