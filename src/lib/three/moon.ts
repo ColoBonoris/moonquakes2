@@ -22,7 +22,7 @@ export const MOON_UNIT_RADIUS = MOON_ARITHMETIC_MEAN_RADIUS * UNIT_TO_KM;
 let moon: Group;
 
 export function createMoon(renderer: WebGLRenderer, scene: Scene, camera: Camera, onComplete: () => void) {
-  moon = createBody(renderer, scene, camera, MOON_UNIT_RADIUS, Y_SECTORS, X_SECTORS, 'map-tiles/moon/tile_16k_{y}_{x}.jpg', onComplete);
+  moon = createBody(renderer, scene, camera, MOON_UNIT_RADIUS, Y_SECTORS, X_SECTORS, '/img/map-tiles/moon/tile_16k_{y}_{x}.jpg', onComplete);
   return moon;
 }
 

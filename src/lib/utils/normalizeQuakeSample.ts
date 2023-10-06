@@ -6,8 +6,10 @@ export function getNormalizedData(sample: RawQuakeData) {
     const newSample = {};
     Object.keys(s).forEach(k => {
       if (k.match(/^(p|s)/)) return;
+      // @ts-ignore
       newSample[k] = s[k];
     });
+    // @ts-ignore
     newSample.stations = [
       {
         name: 12,

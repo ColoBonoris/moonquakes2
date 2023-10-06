@@ -10,7 +10,7 @@
       toggleAllQuakes,
       quakesManager,
       controlManager,
-    } from "./setup";
+    } from "$lib/components/Moon/setup";
   
     let initilized = false;
     let enableContext = false;

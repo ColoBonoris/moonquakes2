@@ -19,7 +19,7 @@ class QuakesManager {
   private listeners: {
     [k in keyof EventsMap]: EventsMap[k][]
   };
-  public labelsContainer: HTMLDivElement;
+  public labelsContainer!: HTMLDivElement;
   private labels: Quake[];
   private addLabel: (quake: Quake) => void;
   private initilizeQuakes: (quakesData: QuakeData[]) => void;

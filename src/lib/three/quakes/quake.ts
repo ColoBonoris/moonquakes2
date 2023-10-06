@@ -72,6 +72,7 @@ export class Quake {
   constructor(data: QuakeData) {
     this.mesh = createMesh(DISTANCE_TO_WORLD_ORIGIN, data.latitude, data.longitude, data.depth, data.type);
     this.mesh.userData.quake = this;
+    // @ts-ignore
     this.pulse = new Pulse(SIZE * 4, this.mesh.material.color.getHex());
     this.pulse.position.copy(this.mesh.position);
     this.pulse.lookAt(0, 0, 0);

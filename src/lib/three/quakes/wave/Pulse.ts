@@ -79,7 +79,9 @@ export class Pulse extends Object3D {
     //  http://stackoverflow.com/questions/19150120/scaling-an-object-in-three-js
 
     this.scale.set(scale, scale, scale);
+    // @ts-ignore
     this.line.material.opacity = opacity;
+    // @ts-ignore
     this.disc.material.opacity = opacity * 0.5;
   }
 }
