@@ -1,7 +1,6 @@
 import type { RaycasterManager } from '$lib/three/labels/raycaster';
-import { MOON_UNIT_RADIUS } from '$lib/three/moon';
 import type { Object3D, Scene } from 'three';
-import { createMesh, Quake } from './quake';
+import { Quake } from './quake';
 import type { QuakeData } from './types';
 
 interface EventsMap {
