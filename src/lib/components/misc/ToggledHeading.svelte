@@ -12,7 +12,7 @@
         {:else}
             <ToggleLeft color="#1e3a8a"/>
         {/if}
-        <h2 class=" ml-5 text-2xl text-blue-900 font-bold">{title}</h2>
+        <h2 class=" ml-5 text-2xl text-blue-950 font-bold">{title}</h2>
     </button>
     {#if shown}
         <div transition:slide class="flex flex-col py-5">

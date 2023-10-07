@@ -2,13 +2,18 @@
     import { Filter, Settings, Info, Search } from 'lucide-svelte';
     
     interface Togglers {
-        config: boolean;
-        filter: boolean;
         about: boolean;
-        search: boolean;
+        tool: boolean;
+        mission: boolean;
+        loading: boolean;
         [key: string]: boolean;
     }
-	export let open: Togglers;
+	export let open: Togglers = {
+        about: false,
+        tool: false,
+        mission: false,
+        loading: true,
+    }
 
     function toggleMenus(active: string = "") {
         Object.keys(open).forEach(key => {
@@ -16,22 +21,21 @@
             open[active] = true;
         })
     }
-    //class="{open.filter ? " fill-orange-400" : "fill-gray-50"}
 
 </script>
 <!-- TODO: Add responsiveness -->
-<div class=" bg-blue-900 w-full h-fit flex flex-row justify-between py-3 px-3 items-center z-30">
+<div class=" bg-blue-950 w-full h-fit flex flex-row justify-between py-3 px-3 items-center z-30">
     <div class="flex flex-row items-center">
         <!-- Filter -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("filter")}>
+        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("about")}>
             <Filter color="{open.filter ? "#fb923c" : "#f9fafb"}" />
         </button>
         <!-- Search -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("search")}>
+        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("tool")}>
             <Search color="{open.search ? "#fb923c" : "#f9fafb"}" />
         </button>
         <!-- Config -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("config")}>
+        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("mission")}>
             <Settings color="{open.config ? "#fb923c" : "#f9fafb"}" />
         </button>
         <!-- About -->
