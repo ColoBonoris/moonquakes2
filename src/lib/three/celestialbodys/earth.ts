@@ -1,5 +1,5 @@
 import * as CONST from '$lib/three/constants';
-import { Mesh, MeshBasicMaterial, MeshStandardMaterial, SphereGeometry, TextureLoader } from 'three'
+import { Mesh, MeshStandardMaterial, SphereGeometry, TextureLoader } from 'three'
 
 // from: https://en.wikipedia.org/wiki/Earth_radius
 const EARTH_ARITHMETIC_MEAN_RADIUS = 6_371
