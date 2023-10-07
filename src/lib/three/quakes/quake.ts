@@ -1,6 +1,6 @@
 import { RAYCASTER_CHANNEL, UNIT_TO_KM } from '$lib/three/constants';
 import { MOON_UNIT_RADIUS } from '$lib/three/moon';
-import { Mesh, MeshBasicMaterial, SphereGeometry } from 'three';
+import { BoxGeometry, CapsuleGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, SphereGeometry } from 'three';
 import type { QuakeData, QuakeType } from './types';
 import { Pulse } from './wave/Pulse';
 
@@ -51,7 +51,15 @@ function createLabel(data: QuakeData) {
 
 export function createMesh(radiusToOrigin: number, lat: number, lon: number, depth: number, type: QuakeType) {
   const profundity = depth * UNIT_TO_KM;
-  const geo = depth > 0.1 ? new SphereGeometry(5 * UNIT_TO_KM, 64, 32) : geometry;
+  let geo = undefined
+  console.log(type);
+  if(type.match(/A\d+/)) {
+    geo = depth > 0.1 ? new BoxGeometry(SIZE, SIZE, profundity) : geometry;
+  }
+  else{
+    geo = new SphereGeometry(5 * UNIT_TO_KM, 64, 32);
+  }
+
   const newQuake = new Mesh(geo, getMesh(type));
   const phi = (90 - lon) * (Math.PI / 180), theta = (lat + 180) * (Math.PI / 180);
   newQuake.position.set(
@@ -62,7 +70,7 @@ export function createMesh(radiusToOrigin: number, lat: number, lon: number, dep
   newQuake.visible = false;
   newQuake.name = 'quake';
   newQuake.layers.enable(RAYCASTER_CHANNEL);
-  newQuake.lookAt(0, 0, 0);
+  newQuake.lookAt(0, 0, -1);
   return newQuake;
 }
 
