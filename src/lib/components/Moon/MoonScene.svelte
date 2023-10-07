@@ -97,7 +97,8 @@
       width: fit-content;
       gap: 0.25rem;
       position: absolute;
-      left: 0;
+      right: 0;
+      justify-content: flex-end;
       margin-top: 4rem;
       padding: 0.25rem;
       width: 100%;
