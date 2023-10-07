@@ -1,14 +1,13 @@
 import { RAYCASTER_CHANNEL, UNIT_TO_KM } from '$lib/three/constants';
 import { MOON_UNIT_RADIUS } from '$lib/three/moon';
-import { BoxGeometry, Color, MathUtils, Mesh, MeshBasicMaterial, PlaneGeometry, ShaderMaterial } from 'three';
+import { Mesh, MeshBasicMaterial, SphereGeometry } from 'three';
 import type { QuakeData, QuakeType } from './types';
 import { Pulse } from './wave/Pulse';
 
 const SIZE = 10 * UNIT_TO_KM;
 const DISTANCE_TO_WORLD_ORIGIN = MOON_UNIT_RADIUS;
 
-const geometry = new BoxGeometry(SIZE, SIZE, SIZE);
-
+const geometry = new SphereGeometry(5 * UNIT_TO_KM, 64, 32);
 
 const MESH_TABLE_BY_TYPE: { [magnitud in QuakeType]: MeshBasicMaterial } = {
   M: new MeshBasicMaterial({
@@ -23,6 +22,10 @@ const MESH_TABLE_BY_TYPE: { [magnitud in QuakeType]: MeshBasicMaterial } = {
     color: `hsl(${128}, 100%, 50%)`,
     wireframe: false
   }),
+  LM: new MeshBasicMaterial({
+    color: `hsl(${246}, 100%, 50%)`,
+    wireframe: false
+  }),
   _: new MeshBasicMaterial({
     color: `hsl(${192}, 100%, 50%)`,
     wireframe: false
@@ -34,6 +37,8 @@ function getMesh(type: string) {
     return MESH_TABLE_BY_TYPE[type];
   if (type.match(/A\d+/))
     return MESH_TABLE_BY_TYPE.A;
+  if (type.includes("LM"))
+    return MESH_TABLE_BY_TYPE.LM;
   return MESH_TABLE_BY_TYPE._;
 }
 
@@ -46,7 +51,7 @@ function createLabel(data: QuakeData) {
 
 export function createMesh(radiusToOrigin: number, lat: number, lon: number, depth: number, type: QuakeType) {
   const profundity = depth * UNIT_TO_KM;
-  const geo = depth > 0.1 ? new BoxGeometry(SIZE, SIZE, profundity) : geometry;
+  const geo = depth > 0.1 ? new SphereGeometry(5 * UNIT_TO_KM, 64, 32) : geometry;
   const newQuake = new Mesh(geo, getMesh(type));
   const phi = (90 - lon) * (Math.PI / 180), theta = (lat + 180) * (Math.PI / 180);
   newQuake.position.set(
@@ -73,7 +78,15 @@ export class Quake {
     this.mesh = createMesh(DISTANCE_TO_WORLD_ORIGIN, data.latitude, data.longitude, data.depth, data.type);
     this.mesh.userData.quake = this;
     // @ts-ignore
-    this.pulse = new Pulse(SIZE * 4, this.mesh.material.color.getHex());
+    const color = this.mesh.material.color.getHex()
+    if(data.type.includes("LM")){
+      this.pulse = new Pulse(SIZE * 1, color);
+    }
+    else {
+      this.pulse = new Pulse(SIZE * 7, color);
+    }
+
+    
     this.pulse.position.copy(this.mesh.position);
     this.pulse.lookAt(0, 0, 0);
     this.label = createLabel(data);
