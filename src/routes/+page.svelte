@@ -1,29 +1,55 @@
 <script lang="ts">
-	import Footer from "$lib/components/Footer.svelte";
-	//import MoonScene from "$lib/components/Moon/MoonScene.svelte";
-	import Navbar from "$lib/components/Navbar.svelte";
-	import ConfigMenu from "$lib/components/Sidebar/ConfigMenu.svelte";
+	import Footer from '$lib/components/Footer.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
+	import FilterMenu from '$lib/components/Wrappers/FilterMenu.svelte';
+	import ToolScreen from '$lib/components/Wrappers/Full/ToolScreen.svelte';
 
-    import { onMount } from 'svelte';
-	let Moon;
-	onMount(async () => { // simulate network delay
+	import { onMount } from 'svelte';
+	import MissionScreen from '$lib/components/Wrappers/Full/MissionScreen.svelte';
+	import AboutScreen from '$lib/components/Wrappers/Full/AboutScreen.svelte';
+	import LoadingScreen from '$lib/components/Wrappers/Full/LoadingScreen.svelte';
+
+	let Moon: typeof import('$lib/components/Moon/MoonScene.svelte').default;
+
+	onMount(async () => {
 		Moon = (await import('$lib/components/Moon/MoonScene.svelte')).default;
 	});
 
-    let configMenu = false;
+	interface Togglers {
+		about: boolean;
+		tool: boolean;
+		mission: boolean;
+		loading: boolean;
+		[key: string]: boolean;
+	}
+	let open: Togglers = {
+		about: false,
+		tool: false,
+		mission: false,
+		loading: false
+	};
 </script>
 
 <svelte:head>
-    <title>Moonquakes, Visualized</title>
+	<title>Moonquakes XPlorer</title>
 </svelte:head>
-<main class=" w-full h-full max-w-full flex flex-column z-10">
-    <Navbar/>
-    {#if configMenu}
-        <ConfigMenu>
 
-        </ConfigMenu>
-    {/if}
-    <!-- Do the same for all context menus, we're going to have listeners -->
-    <svelte:component this={Moon}/>
-    <Footer/>
-</main>
+<div class="flex flex-col h-full">
+	<Navbar bind:open />
+	<main class=" w-full h-full flex flex-row border-box">
+		<FilterMenu bind:open={open.filter} />
+		{#if open.about}
+			<AboutScreen bind:open={open.about} />
+		{:else if open.tool}
+			<ToolScreen bind:open={open.tool} />
+		{:else if open.mission}
+			<MissionScreen bind:open={open.mission} />
+		{:else if open.loading}
+			<LoadingScreen bind:open={open.loading} />
+		{/if}
+		<div class="w-2/3 h-full overflow-hidden flex-initial">
+			<svelte:component this={Moon} />
+		</div>
+	</main>
+	<!-- <Footer/> -->
+</div>
