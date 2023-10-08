@@ -61,8 +61,7 @@
 	<div class="rotation">
 		<button
 			style="bottom:-3.5rem"
-			on:pointerdown={() => controlManager.setRotation(['down'])}
-			on:pointerup={() => controlManager.unsetRotation(['down'])}>-</button
+			on:click={() => controlManager.zoomOut()}>-</button
 		>
 		<button
 			style="top:-3.5rem"
@@ -71,8 +70,7 @@
 		>
 		<button
 			style="top:-3.5rem"
-			on:pointerdown={() => controlManager.setRotation(['down'])}
-			on:pointerup={() => controlManager.unsetRotation(['down'])}>+</button
+			on:click={() => controlManager.zoomIn()}>+</button
 		>
 		<button
 			style="right:-4rem"
