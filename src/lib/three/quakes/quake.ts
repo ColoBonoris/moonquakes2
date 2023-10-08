@@ -1,6 +1,6 @@
 import { RAYCASTER_CHANNEL, UNIT_TO_KM } from '$lib/three/constants';
 import { MOON_UNIT_RADIUS } from '$lib/three/moon';
-import { Mesh, MeshBasicMaterial, SphereGeometry } from 'three';
+import { BoxGeometry, Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from 'three';
 import type { QuakeData, QuakeType } from './types';
 import { Pulse } from './wave/Pulse';
 
@@ -19,7 +19,7 @@ const MESH_TABLE_BY_TYPE: { [magnitud in QuakeType]: MeshBasicMaterial } = {
     wireframe: false
   }),
   A: new MeshBasicMaterial({
-    color: `hsl(${128}, 100%, 50%)`,
+    color: `hsl(${192}, 100%, 50%)`,
     wireframe: false
   }),
   LM: new MeshBasicMaterial({
@@ -27,7 +27,7 @@ const MESH_TABLE_BY_TYPE: { [magnitud in QuakeType]: MeshBasicMaterial } = {
     wireframe: false
   }),
   _: new MeshBasicMaterial({
-    color: `hsl(${192}, 100%, 50%)`,
+    color: `hsl(${128}, 100%, 50%)`,
     wireframe: false
   })
 };
@@ -51,13 +51,22 @@ function createLabel(data: QuakeData) {
 
 export function createMesh(radiusToOrigin: number, lat: number, lon: number, depth: number, type: QuakeType) {
   const profundity = depth * UNIT_TO_KM;
-  const geo = depth > 0.1 ? new SphereGeometry(5 * UNIT_TO_KM, 64, 32) : geometry;
-  const newQuake = new Mesh(geo, getMesh(type));
-  const phi = (90 - lon) * (Math.PI / 180), theta = (lat + 180) * (Math.PI / 180);
+  let geo = undefined;
+  let newQuake = null;
+  const phi = (90 - lon) * (Math.PI / 180);
+  const theta = (lat + 180) * (Math.PI / 180);
+  if(type.match(/A\d+/)) {
+    geo = new BoxGeometry(SIZE, SIZE, profundity);
+    newQuake = new Mesh(geo, getMesh(type));
+  }
+  else{
+    geo = new SphereGeometry(5 * UNIT_TO_KM, 64, 32);
+    newQuake = new Mesh(geo, getMesh(type));
+  }
   newQuake.position.set(
-    -((radiusToOrigin - profundity / 2) * Math.sin(phi) * Math.cos(theta)),
-    -((radiusToOrigin - profundity / 2) * Math.sin(phi) * Math.sin(theta)),
-    -((radiusToOrigin - profundity / 2) * Math.cos(phi)),
+    -((radiusToOrigin - (profundity / 2)) * Math.sin(phi) * Math.cos(theta)),
+    -((radiusToOrigin - (profundity / 2)) * Math.sin(phi) * Math.sin(theta)),
+    -((radiusToOrigin - (profundity / 2)) * Math.cos(phi)),
   );
   newQuake.visible = false;
   newQuake.name = 'quake';
@@ -86,8 +95,22 @@ export class Quake {
       this.pulse = new Pulse(SIZE * 7, color);
     }
 
-    
-    this.pulse.position.copy(this.mesh.position);
+    if(data.type.match(/A\d+/)){
+      const phi = (90 - data.longitude) * (Math.PI / 180), theta = (data.latitude + 180) * (Math.PI / 180);
+      let position = new Vector3(this.mesh.position.x, this.mesh.position.y, this.mesh.position.z)
+      position.set(
+        -((DISTANCE_TO_WORLD_ORIGIN ) * Math.sin(phi) * Math.cos(theta)),
+        -((DISTANCE_TO_WORLD_ORIGIN ) * Math.sin(phi) * Math.sin(theta)),
+        -((DISTANCE_TO_WORLD_ORIGIN ) * Math.cos(phi)),
+      );
+
+      console.log(position);
+      this.pulse.position.copy(position);
+    }
+    else {
+      this.pulse.position.copy(this.mesh.position);
+    }
+
     this.pulse.lookAt(0, 0, 0);
     this.label = createLabel(data);
     this.depth = data.depth;
