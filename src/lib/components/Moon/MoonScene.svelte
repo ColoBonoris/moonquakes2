@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { orientation } from '$lib/stores/orientationStore';
 	import { toggleMoonInterior, toggleMoonWireframe } from '$lib/three/moon';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import {
 		CircleOff,
 		Frame,
@@ -23,11 +23,15 @@
 		quakesManager,
 		controlManager
 	} from '$lib/components/Moon/setup';
+	import type { Quake } from '$three/quakes/quake';
 
 	let initilized = false;
 	let enableContext = false;
 	let viewQuakes = false;
 	let labels: HTMLDivElement;
+
+	let clickedQuake: Quake | undefined;
+	let temp: Quake | undefined;
 
 	function toggleContext() {
 		enableContext = !enableContext;
@@ -38,10 +42,19 @@
 		toggleAllQuakes();
 	}
 
+	function onQuakeClick(e: Quake) {
+		clickedQuake = e;
+		temp = clickedQuake;
+	}
 	onMount(() => {
 		animate();
 		quakesManager.labelsContainer = labels;
+		quakesManager.addEventListener('clickedQuake', onQuakeClick);
 	});
+	onDestroy(() => {
+		quakesManager.removeEventListener('clickedQuake', onQuakeClick);
+	});
+
 	function initilize(node: HTMLElement) {
 		init(node, () => (initilized = true));
 	}
@@ -66,6 +79,24 @@
 			><Radar size={36} color="hsl(0, 0%, 70%)" /></button
 		>
 	</div>
+	<div class="left-top bg-gray-50 opacity-80 rounded">
+		{#if !!temp}
+			<button
+				on:click={() => {
+					temp = undefined;
+				}}>X</button
+			>
+			<div class="flex flex-col gap-1 justify-start">
+				<span class="">Selected event:</span>
+				<span class="">Longitude: {temp.longitude} degrees</span>
+				<span class="">Latitude: {temp.latitude} degrees</span>
+				<span class="">Depth: {temp.depth} kilometers</span>
+				<span class="">Magnitude: {temp.magnitude === 0 ? temp.magnitude : 'N/A'}</span>
+				<span class="">Date (ISO): {temp.date.toISOString()}</span>
+			</div>
+		{/if}
+	</div>
+
 	<div class="left-bottom">
 		<button on:click={orientation.toggle}>Toggle Giroscopic</button>
 		<button on:click={controlManager.resetOrientation}>Reset</button>
@@ -148,5 +179,11 @@
 		position: absolute;
 		left: 0.5rem;
 		bottom: 0.5rem;
+	}
+	.left-top {
+		/* absolute left-0.5 bottom-0.5*/
+		position: absolute;
+		left: 0.5rem;
+		top: 0.5rem;
 	}
 </style>

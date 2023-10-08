@@ -7,7 +7,6 @@
 	let setupModule: typeof import('$lib/components/Moon/setup');
 	onMount(async () => {
 		setupModule = await import('$lib/components/Moon/setup');
-		console.log(setupModule.quakesManager);
 	});
 
 	interface Filters {
@@ -36,8 +35,6 @@
 	resetFilters();
 
 	function filterQuakes(formData: FormData) {
-		console.log(filters);
-		console.log(setupModule.quakesManager);
 		setupModule.quakesManager.filterBy((quake: Quake) => {
 			return !(
 				// Check all filters

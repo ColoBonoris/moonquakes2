@@ -6,6 +6,7 @@ import type { QuakeData } from './types';
 interface EventsMap {
   'appear': (quake: Quake) => void,
   'hidden': () => void;
+  'clickedQuake': (quake: Quake) => void;
 }
 
 class QuakesManager {
@@ -22,6 +23,8 @@ class QuakesManager {
   private labels: Quake[];
   private addLabel: (quake: Quake) => void;
   private initilizeQuakes: (quakesData: QuakeData[]) => void;
+  public clickedQuake: Quake | undefined;
+
 
   constructor(scene: Scene, raycasterManager: RaycasterManager, quakesData: QuakeData[]) {
     this.scene = scene;
@@ -30,7 +33,7 @@ class QuakesManager {
     this.quakes = [];
     this.quakesVisibles = false;
     this.currentQuake = 0;
-    this.listeners = { 'appear': [], 'hidden': [] };
+    this.listeners = { 'appear': [], 'hidden': [], 'clickedQuake': [] };
     this.labels = [];
     // this.labelsContainer
 
@@ -57,7 +60,8 @@ class QuakesManager {
 
     this.rcManager.addClickListener((element: Object3D) => {
       if (!element.userData.quake) return;
-      $.addLabel(element.userData.quake);
+      this.clickedQuake = element.userData.quake;
+      this.notifyQuakeClicked(this.clickedQuake!);
     });
   }
 
@@ -91,9 +95,17 @@ class QuakesManager {
   notifyQuakeAppear(quake: Quake) {
     this.listeners['appear'].forEach(callback => callback(quake));
   }
+  notifyQuakeClicked(quake: Quake) {
+    this.listeners['clickedQuake'].forEach(callback => callback(quake));
+  }
 
   addEventListener<K extends keyof EventsMap>(event: K, callback: EventsMap[K]) {
     this.listeners[event].push(callback);
+  }
+  removeEventListener<K extends keyof EventsMap>(event: K, callback: EventsMap[K]) {
+    const index = this.listeners[event].indexOf(callback)
+    if (index < 0) return;
+    this.listeners[event].splice(this.listeners[event].indexOf(callback), 1);
   }
 
   filterBy(filter: (quake: Quake) => boolean, allQuakes = false) {
