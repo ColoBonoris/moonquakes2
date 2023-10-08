@@ -62,8 +62,6 @@ class QuakesManager {
     });
   }
 
-
-
   toggleQuakesVisualization() {
     this.quakesVisibles = !this.quakesVisibles;
     if (this.quakesVisibles) {
@@ -106,11 +104,11 @@ class QuakesManager {
       this.quakes = this.quakes.filter(filter);
     return this;
   }
-  shortBy(short: (quake1: Quake, quake2: Quake) => number, allQuakes = false) {
+  sortBy(sort: (quake1: Quake, quake2: Quake) => number, allQuakes = false) {
     if (allQuakes)
-      this.quakes = this.baseQuakes.slice().sort(short);
+      this.quakes = this.baseQuakes.slice().sort(sort);
     else
-      this.quakes = this.quakes.sort(short);
+      this.quakes = this.quakes.sort(sort);
     return this;
   }
 

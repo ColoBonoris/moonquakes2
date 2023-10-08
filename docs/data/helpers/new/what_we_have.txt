@@ -3,7 +3,7 @@ Stations
     There was also Apollo 11, which operated for only 21 days, data from Apollo 11 sometimes appears as if it was 12.
     Another experiment was the LSPE, which was done on station 17 sometimes appears here too.
 -------------------------------------------------------
-Deep Moonquakes (DM) -> These are areas, not events
+Deep Moonquakes (DM) -> These are areas, not events?
     Locations: 
             A: Identifier (there are some left here, that are present in "arrivals")
             Side: N/F (Nearest/Furthest)
