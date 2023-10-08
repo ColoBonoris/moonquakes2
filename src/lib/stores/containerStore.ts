@@ -8,7 +8,6 @@ export function width(): number {
         return window.innerWidth
     }
     const width = container.getBoundingClientRect().width;
-    console.log('width', width);
     return width;
 }
 
@@ -18,6 +17,5 @@ export function height(): number {
         return window.innerHeight
     }
     const height = container.getBoundingClientRect().height;
-    console.log('height', height);
     return height;
 }

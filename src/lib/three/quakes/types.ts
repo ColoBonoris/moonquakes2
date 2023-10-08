@@ -38,6 +38,7 @@ export interface QuakeData {
   type: string,
   latitude: number,
   longitude: number,
+  magnitude: number,
   phi: number,
   delta_a: number,
   delta_b: number,

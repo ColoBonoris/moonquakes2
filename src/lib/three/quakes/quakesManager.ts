@@ -38,7 +38,6 @@ class QuakesManager {
 
     this.addLabel = (quake: Quake) => {
       this.labelsContainer.innerHTML = '';
-      console.log(quake.label.textContent);
       quake.showLabel();
       this.labels.push(quake);
       this.labelsContainer.appendChild(quake.label);
@@ -102,6 +101,12 @@ class QuakesManager {
       this.quakes = this.baseQuakes.filter(filter);
     else
       this.quakes = this.quakes.filter(filter);
+    this.baseQuakes.forEach(q => {
+      if(this.quakes.includes(q))
+        q.setVisibility(true);
+      else
+        q.setVisibility(false);
+    });
     return this;
   }
   sortBy(sort: (quake1: Quake, quake2: Quake) => number, allQuakes = false) {
