@@ -1,6 +1,6 @@
 import { RAYCASTER_CHANNEL, UNIT_TO_KM } from '$lib/three/constants';
 import { MOON_UNIT_RADIUS } from '$lib/three/moon';
-import { BoxGeometry, CapsuleGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from 'three';
+import { BoxGeometry, Mesh, MeshBasicMaterial, SphereGeometry, Vector3 } from 'three';
 import type { QuakeData, QuakeType } from './types';
 import { Pulse } from './wave/Pulse';
 
@@ -19,7 +19,7 @@ const MESH_TABLE_BY_TYPE: { [magnitud in QuakeType]: MeshBasicMaterial } = {
     wireframe: false
   }),
   A: new MeshBasicMaterial({
-    color: `hsl(${128}, 100%, 50%)`,
+    color: `hsl(${192}, 100%, 50%)`,
     wireframe: false
   }),
   LM: new MeshBasicMaterial({
@@ -27,7 +27,7 @@ const MESH_TABLE_BY_TYPE: { [magnitud in QuakeType]: MeshBasicMaterial } = {
     wireframe: false
   }),
   _: new MeshBasicMaterial({
-    color: `hsl(${192}, 100%, 50%)`,
+    color: `hsl(${128}, 100%, 50%)`,
     wireframe: false
   })
 };
@@ -58,21 +58,16 @@ export function createMesh(radiusToOrigin: number, lat: number, lon: number, dep
   if(type.match(/A\d+/)) {
     geo = new BoxGeometry(SIZE, SIZE, profundity);
     newQuake = new Mesh(geo, getMesh(type));
-    newQuake.position.set(
-      -((radiusToOrigin - (profundity / 2)) * Math.sin(phi) * Math.cos(theta)),
-      -((radiusToOrigin - (profundity / 2)) * Math.sin(phi) * Math.sin(theta)),
-      -((radiusToOrigin - (profundity / 2)) * Math.cos(phi)),
-    );
   }
   else{
     geo = new SphereGeometry(5 * UNIT_TO_KM, 64, 32);
     newQuake = new Mesh(geo, getMesh(type));
-    newQuake.position.set(
-      -((radiusToOrigin - profundity / 2) * Math.sin(phi) * Math.cos(theta)),
-      -((radiusToOrigin - profundity / 2) * Math.sin(phi) * Math.sin(theta)),
-      -((radiusToOrigin - profundity / 2) * Math.cos(phi)),
-    );
   }
+  newQuake.position.set(
+    -((radiusToOrigin - (profundity / 2)) * Math.sin(phi) * Math.cos(theta)),
+    -((radiusToOrigin - (profundity / 2)) * Math.sin(phi) * Math.sin(theta)),
+    -((radiusToOrigin - (profundity / 2)) * Math.cos(phi)),
+  );
   newQuake.visible = false;
   newQuake.name = 'quake';
   newQuake.layers.enable(RAYCASTER_CHANNEL);
