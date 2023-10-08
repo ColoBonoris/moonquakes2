@@ -82,6 +82,7 @@
 	<div class="left-top bg-gray-50 opacity-80 rounded">
 		{#if !!temp}
 			<button
+				class=""
 				on:click={() => {
 					temp = undefined;
 				}}>X</button
