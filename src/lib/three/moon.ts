@@ -10,8 +10,10 @@ import {
 import { UNIT_TO_KM } from './constants';
 import { createBody, createBodyEdges } from './mainbody';
 
-const Y_SECTORS = 2;
-const X_SECTORS = 4;
+// const Y_SECTORS = 2;
+// const X_SECTORS = 4;
+const Y_SECTORS = 1;
+const X_SECTORS = 1;
 
 // from: https://en.wikipedia.org/wiki/List_of_natural_satellites
 const MOON_ARITHMETIC_MEAN_RADIUS = 1_738;

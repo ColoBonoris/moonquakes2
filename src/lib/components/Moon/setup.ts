@@ -12,6 +12,8 @@ import { TimeLine } from '$lib/three/timeline';
 import { RaycasterManager } from '$lib/three/labels/raycaster';
 import { getNormalizedData } from '$lib/utils/normalizeQuakeSample';
 import realSample from "$data/quakes_sample.json";
+import { canvasContainer, height, width } from '$lib/stores/containerStore';
+import { get } from 'svelte/store';
 
 let moon: Group;
 const moonEdges = createMoonEdges();
@@ -40,11 +42,11 @@ export function animate() {
 
 export function onWindowResize() {
   // camera adaptation
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = width() / height();
   camera.updateProjectionMatrix();
 
   // renderer adaptation
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(width(), height());
 }
 
 export function init(container: HTMLElement, onComplete: () => void) {
@@ -58,6 +60,8 @@ export function init(container: HTMLElement, onComplete: () => void) {
   timeline = new TimeLine(2, Infinity);
   timeline.subscribe(quakesManager.showNextQuake.bind(quakesManager));
   controlManager = new ControlManager(cameraControls);
+  canvasContainer.set(container);
+  onWindowResize();
 }
 
 export function toggleExternalBodys(enable: boolean) {

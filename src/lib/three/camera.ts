@@ -1,6 +1,7 @@
 import { PerspectiveCamera } from 'three';
 import { SUN_MOON_UNITS } from './constants';
 import { MOON_UNIT_RADIUS } from './moon';
+import { width, height } from '$lib/stores/containerStore';
 
 const DISTANCE = MOON_UNIT_RADIUS * 2;
 const MAX_RENDER_DISTANCE = (SUN_MOON_UNITS * 1.5);
@@ -8,7 +9,7 @@ const MAX_RENDER_DISTANCE = (SUN_MOON_UNITS * 1.5);
 function setupCamera() {
   const camera = new PerspectiveCamera(
     60,
-    window.innerWidth / window.innerHeight,
+    width() / height(),
     0.1,
     MAX_RENDER_DISTANCE
   );
@@ -25,7 +26,7 @@ export const camera = setupCamera();
 
 // on window rezize event
 function resizeCamera() {
-  const aspect = window.innerWidth / window.innerHeight;
+  const aspect = width() / height();
   camera.aspect = aspect;
   camera.updateProjectionMatrix();
 }

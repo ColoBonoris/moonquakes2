@@ -36,8 +36,8 @@
   </script>
   
   <svelte:window on:resize={onWindowResize} />
-  <main class="w-full h-full absolute right-0 top-0 z-10">
-    <div use:initilize/>
+  <main class="w-full h-full relative">
+    <div use:initilize class="absolute top-0 right-0 bottom-0 left-0"/>
     <div id="labels" bind:this={labels} />
     
     <div class="tools" style:top={0}>
@@ -85,6 +85,7 @@
   
   <style>
     #labels {
+      /*absolute hidden flex flex-col text-gray-200*/
       display: hidden;
       flex-direction: column;
       position: absolute;
@@ -93,6 +94,7 @@
       color: hsl(0, 0%, 70%);
     }
     .tools {
+      /* flex flex-col justify-end w-fit w-full gap-1 mt-6 p-2*/
       display: flex;
       width: fit-content;
       gap: 0.25rem;
@@ -104,6 +106,7 @@
       width: 100%;
     }
     button {
+      /* px-2 py-1 rounded border border-gray-400 bg-gray-900 text-gray-200 font-semibold*/
       padding: 0.5ch;
       height: fit-content;
       background: none;
@@ -116,6 +119,7 @@
       background-color: hsl(0, 0%, 25%, 0.1);
     }
     .rotation {
+      /* grid gap-3 */
       position: absolute;
       right: 0.5rem;
       bottom: 0.5rem;
@@ -125,11 +129,13 @@
       gap: 0.5rem;
     }
     .rotation button {
+      /* w-full h-full font-mono*/
       width: 100%;
       height: 100%;
       font-family: monospace;
     }
     .left-bottom {
+      /* absolute left-0.5 bottom-0.5*/
       position: absolute;
       left: 0.5rem;
       bottom: 0.5rem;

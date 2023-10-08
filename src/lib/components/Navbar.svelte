@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Filter, Settings, Info, Search } from 'lucide-svelte';
+    import { Text, Info, DraftingCompass } from 'lucide-svelte';
     
     interface Togglers {
         about: boolean;
@@ -24,23 +24,19 @@
 
 </script>
 <!-- TODO: Add responsiveness -->
-<div class=" bg-blue-950 w-full h-fit flex flex-row justify-between py-3 px-3 items-center z-30">
+<div class=" bg-blue-950 w-full h-fit flex flex-row justify-between py-3 px-3 items-center z-30 flex-none">
     <div class="flex flex-row items-center">
-        <!-- Filter -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("about")}>
-            <Filter color="{open.filter ? "#fb923c" : "#f9fafb"}" />
-        </button>
-        <!-- Search -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("tool")}>
-            <Search color="{open.search ? "#fb923c" : "#f9fafb"}" />
-        </button>
-        <!-- Config -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("mission")}>
-            <Settings color="{open.config ? "#fb923c" : "#f9fafb"}" />
-        </button>
         <!-- About -->
         <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("about")}>
             <Info color="{open.about ? "#fb923c" : "#f9fafb"}" />
+        </button>
+        <!-- Tool -->
+        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("tool")}>
+            <DraftingCompass color="{open.tool ? "#fb923c" : "#f9fafb"}" />
+        </button>
+        <!-- Mission -->
+        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("mission")}>
+            <Text color="{open.mission ? "#fb923c" : "#f9fafb"}" />
         </button>
         
     </div>

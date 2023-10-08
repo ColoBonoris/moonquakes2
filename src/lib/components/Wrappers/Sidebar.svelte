@@ -4,7 +4,7 @@
 	export let open: Boolean;
 </script>
 
-<aside class="w-2/3 md:w-1/3 p-3 h-full bg-gray-200 {open ? "open" : "" } overflow-y-scroll">
+<aside class=" h-full w-full p-3 bg-gray-200 {open ? "open" : "" } overflow-y-scroll">
 	<div class="pt-12 pl-6 text-xl">
 		<div class=" w-full h-fit flex flex-row justify-end">
 			<button on:click={() => {open = ! open}}>
@@ -13,7 +13,7 @@
 		</div>
 		<div class=" pr-6">
 			<div class=" overflow-X-scroll text-ellipsis ">
-				<slot >
+				<slot>
 				</slot>
 			</div>
 			

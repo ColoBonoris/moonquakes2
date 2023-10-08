@@ -1,3 +1,4 @@
+import { height, width } from '$lib/stores/containerStore';
 import { WebGLRenderer } from 'three';
 
 function createRenderer() {
@@ -7,7 +8,7 @@ function createRenderer() {
 
   // default initialization
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(width(), height());
 
   return renderer;
 }
@@ -16,5 +17,5 @@ export const renderer = createRenderer();
 
 // on window rezize event
 function resizeRenderer() {
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(width(), height());
 }
