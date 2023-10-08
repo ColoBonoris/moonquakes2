@@ -71,29 +71,13 @@
 		<button on:click={controlManager.resetOrientation}>Reset</button>
 	</div>
 	<div class="rotation">
-		<button
-			style="bottom:-3.5rem"
-<<<<<<< Updated upstream
-			on:click={() => controlManager.zoomOut()}>-</button
-=======
-			on:pointerdown={() => controlManager.setRotation(['down'])}
-			on:pointerup={() => controlManager.unsetRotation(['down'])}><ZoomOut /></button
->>>>>>> Stashed changes
-		>
+		<button style="bottom:-3.5rem" on:click={() => controlManager.zoomOut()}><ZoomOut /></button>
 		<button
 			style="top:-3.5rem"
 			on:pointerdown={() => controlManager.setRotation(['down'])}
 			on:pointerup={() => controlManager.unsetRotation(['down'])}><MoveUp /></button
 		>
-		<button
-			style="top:-3.5rem"
-<<<<<<< Updated upstream
-			on:click={() => controlManager.zoomIn()}>+</button
-=======
-			on:pointerdown={() => controlManager.setRotation(['down'])}
-			on:pointerup={() => controlManager.unsetRotation(['down'])}><ZoomIn /></button
->>>>>>> Stashed changes
-		>
+		<button style="top:-3.5rem" on:click={() => controlManager.zoomIn()}><ZoomIn /></button>
 		<button
 			style="right:-4rem"
 			on:pointerdown={() => controlManager.setRotation(['right'])}
