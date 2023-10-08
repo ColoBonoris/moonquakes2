@@ -306,6 +306,15 @@ class ControlManager {
 
     this.control.rotate(azimuthAngle, polarAngle);
   }
+
+  zoomIn() {
+    this.control.dolly(0.5, true);
+  }
+
+  zoomOut() {
+    this.control.dolly(-0.5, true);
+  }
+
 }
 
 export { ControlManager };

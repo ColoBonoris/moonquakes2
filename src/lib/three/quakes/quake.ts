@@ -103,8 +103,6 @@ export class Quake {
         -((DISTANCE_TO_WORLD_ORIGIN ) * Math.sin(phi) * Math.sin(theta)),
         -((DISTANCE_TO_WORLD_ORIGIN ) * Math.cos(phi)),
       );
-
-      console.log(position);
       this.pulse.position.copy(position);
     }
     else {
