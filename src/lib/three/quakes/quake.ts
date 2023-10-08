@@ -62,14 +62,28 @@ export function createMesh(radiusToOrigin: number, lat: number, lon: number, dep
 }
 
 export class Quake {
+  index: number;
+  type: string;
+  //magnitude: number;
+  latitude: number;
+  longitude: number;
+  depth: number;
+  depthError: number;
+  date: Date;
   mesh: Mesh;
   label: HTMLDivElement;
   labelContainer: HTMLDivElement | undefined;
-  date: string;
-  depth: number;
   pulse: Pulse;
   isVisible: boolean;
   constructor(data: QuakeData) {
+    this.index = data.index;
+    this.type = data.type;
+    //this.magnitude = data.magnitude;
+    this.latitude = data.latitude;
+    this.longitude = data.longitude;
+    this.depth = data.depth;
+    this.depthError = data.depth_error;
+    this.date = new Date(data.date);
     this.mesh = createMesh(DISTANCE_TO_WORLD_ORIGIN, data.latitude, data.longitude, data.depth, data.type);
     this.mesh.userData.quake = this;
     // @ts-ignore
@@ -77,8 +91,6 @@ export class Quake {
     this.pulse.position.copy(this.mesh.position);
     this.pulse.lookAt(0, 0, 0);
     this.label = createLabel(data);
-    this.depth = data.depth;
-    this.date = data.date;
     this.isVisible = false;
   }
 

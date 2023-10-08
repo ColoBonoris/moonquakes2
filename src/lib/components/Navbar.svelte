@@ -1,47 +1,48 @@
 <script lang="ts">
-    import { Text, Info, DraftingCompass } from 'lucide-svelte';
-    
-    interface Togglers {
-        about: boolean;
-        tool: boolean;
-        mission: boolean;
-        loading: boolean;
-        [key: string]: boolean;
-    }
+	import { Text, Info, DraftingCompass } from 'lucide-svelte';
+
+	interface Togglers {
+		about: boolean;
+		tool: boolean;
+		mission: boolean;
+		loading: boolean;
+		[key: string]: boolean;
+	}
 	export let open: Togglers = {
-        about: false,
-        tool: false,
-        mission: false,
-        loading: true,
-    }
+		about: false,
+		tool: false,
+		mission: false,
+		loading: true
+	};
 
-    function toggleMenus(active: string = "") {
-        Object.keys(open).forEach(key => {
-            open[key] = false;
-            open[active] = true;
-        })
-    }
-
+	function toggleMenus(active: string = '') {
+		Object.keys(open).forEach((key) => {
+			open[key] = false;
+			open[active] = true;
+		});
+	}
 </script>
+
 <!-- TODO: Add responsiveness -->
-<div class=" bg-blue-950 w-full h-fit flex flex-row justify-between py-3 px-3 items-center z-30 flex-none">
-    <div class="flex flex-row items-center">
-        <!-- About -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("about")}>
-            <Info color="{open.about ? "#fb923c" : "#f9fafb"}" />
-        </button>
-        <!-- Tool -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("tool")}>
-            <DraftingCompass color="{open.tool ? "#fb923c" : "#f9fafb"}" />
-        </button>
-        <!-- Mission -->
-        <button class="mr-3 h-8 w-8" on:click={() => toggleMenus("mission")}>
-            <Text color="{open.mission ? "#fb923c" : "#f9fafb"}" />
-        </button>
-        
-    </div>
-    <a href="/" class=" p-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" fill="currentColor" class=" fill-red-500 mr-3 h-5 w-5">
-            <path d="m17.21,39.26c-1.07-2.23-1.93-4.54-2.38-6.98-1.42-7.76.1-14.9,4.77-21.27C23.79,5.29,29.45,1.77,36.42.47c5.56-1.04,10.95-.36,16.12,1.99.11.05.23.1.34.16.06.03.11.08.2.15-3.08-1.2-6.24-1.46-9.45-1.14-5.46.55-10.45,2.38-14.92,5.56-3.47,2.47-6.28,5.52-7.68,9.61-1.66,4.84-1.34,9.57,1.41,13.97,1.78,2.86,4.45,4.68,7.52,5.94,4.33,1.78,8.85,2.23,13.48,1.86,1-.08,2-.23,3.03-.26-1.12.33-2.24.67-3.37.98-5.44,1.51-10.93,2.78-16.51,3.62-5.15.78-10.31,1.33-15.53,1.05-2.37-.12-4.71-.4-6.96-1.19-1.08-.38-2.1-.88-2.93-1.69-1.19-1.16-1.46-2.53-.89-4.07.59-1.61,1.67-2.9,2.86-4.09,2.74-2.76,5.96-4.89,9.31-6.82.06-.03.13-.04.22-.07.05,2.47.4,4.87,1.12,7.21.69,2.26,1.66,4.38,3.3,6.13.04.05.08.13.15.06.07-.07,0-.12-.04-.17Zm.08.29s-.04.07-.03.09c.01.03,0,.13.08.05.02-.02.02-.06.02-.09,0-.02-.04-.03-.07-.04Z,m65.31,14.55c1.31,2.61,2.26,5.34,2.69,8.23,1.04,7.07-.35,13.63-4.43,19.5-4.69,6.76-11.21,10.62-19.4,11.56-4.85.56-9.51-.25-14.09-2.28.21,0,.29-.02.36,0,4.28,1.39,8.58,1.14,12.87.09,5.23-1.28,9.9-3.65,13.76-7.46,2.8-2.77,4.79-6.03,5.32-9.99.68-5.09-.39-9.71-4.2-13.4-2.7-2.62-6.04-4.01-9.66-4.79-3.96-.86-7.95-.93-11.94-.24-.15.03-.31.03-.47.05-.01,0-.02-.02-.07-.08.79-.23,1.56-.47,2.32-.69.78-.22,1.56-.44,2.34-.66,4.66-1.26,9.37-2.34,14.14-3.11,5.53-.9,11.09-1.52,16.71-1.24,2.57.13,5.11.44,7.52,1.4.57.23,1.12.5,1.62.85,1.95,1.34,2.44,3.14,1.43,5.28-.77,1.62-1.96,2.93-3.26,4.15-2.61,2.45-5.57,4.41-8.65,6.19-.06.03-.13.05-.25.09-.05-1.34-.13-2.64-.35-3.93-.44-2.54-1.14-4.99-2.45-7.22-.5-.85-1.04-1.69-1.78-2.36-.03-.04-.07-.1-.08-.1-.09.05-.02.11,0,.16Z"/> m41.91,25.72c-.58.23-1.15.5-1.75.69-.41.13-.62.39-.77.75-.25.59-.4,1.23-.79,1.85-.25-.6-.52-1.12-.7-1.67-.18-.55-.52-.85-1.07-1.02-.53-.16-1.03-.41-1.61-.65.65-.47,1.35-.59,1.97-.88.36-.17.53-.38.66-.7.24-.6.48-1.19.75-1.87.35.6.55,1.15.73,1.71.16.5.43.83.96.99.56.17,1.09.43,1.64.66,0,.05-.01.1-.02.15Z,m27.88,22.04c-.24-1.35-1.06-2.07-2.39-2.3.25-.29.5-.41.73-.44.99-.14,1.28-.88,1.5-1.68.04-.14.02-.29.24-.35.24.53.4,1.13.75,1.59.34.46,1.08.35,1.54.79-.46.4-1.14.39-1.54.82-.39.42-.42,1.06-.83,1.58Z,m46.47,21.54c-.26-1.03-.88-1.63-1.91-1.89.94-.33,1.69-.79,1.88-1.9.29,1,.89,1.63,1.92,1.88-1.02.29-1.62.9-1.9,1.91Z,m51.37,26.01c.66-.28,1.11-.71,1.36-1.4.26.66.67,1.12,1.5,1.37-.75.31-1.23.7-1.46,1.38-.28-.67-.7-1.13-1.4-1.34Z,m43.58,30.34c.18.78.76,1.05,1.47,1.32-.64.37-1.27.63-1.39,1.52-.23-.45-.34-.76-.53-1-.2-.25-.61-.21-.88-.53.64-.22,1.16-.56,1.34-1.31Z,m28.02,29.91c.69-.22,1.12-.66,1.27-1.31.19.04.25.15.27.25.11.46.37.75.85.87.29.07.36.32.03.4-.6.14-.79.62-1.06,1.22-.27-.72-.67-1.18-1.36-1.42Z,m17.3,39.55s.06.03.07.04c0,.03,0,.07-.02.09-.08.08-.07-.02-.08-.05,0-.02.02-.05.03-.09Z,m17.21,39.26c.03.05.11.11.04.17-.07.07-.11,0-.15-.06.04-.04.08-.08.11-.12Z,m65.31,14.55c-.03-.05-.1-.11,0-.16,0,0,.05.07.08.1-.02.02-.05.04-.07.06Z"/>
-        </svg></a>
+<div
+	class=" bg-blue-950 w-full h-fit flex flex-row justify-between py-3 px-3 items-center z-30 flex-none"
+>
+	<div class="flex flex-row items-center">
+		<!-- About -->
+		<button class="mr-3 h-8 w-8" on:click={() => toggleMenus('about')}>
+			<Info color={open.about ? '#fb923c' : '#f9fafb'} />
+		</button>
+		<!-- Tool -->
+		<button class="mr-3 h-8 w-8" on:click={() => toggleMenus('tool')}>
+			<DraftingCompass color={open.tool ? '#fb923c' : '#f9fafb'} />
+		</button>
+		<!-- Mission -->
+		<button class="mr-3 h-8 w-8" on:click={() => toggleMenus('mission')}>
+			<Text color={open.mission ? '#fb923c' : '#f9fafb'} />
+		</button>
+	</div>
+	<div class="flex flex-row items-center">
+		<p class="text-gray-50 mr-4 text-lg">MOONQUAKES XPLORER</p>
+		<img src="/img/assets/moonquakes-logo.png" alt="logo" class=" max-w-[50px]" />
+	</div>
 </div>

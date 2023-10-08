@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
 body {
-    @apply h-full overflow-hidden;
-}
-body > div {
-    @apply h-full overflow-hidden;
+    @apply h-screen overflow-hidden flex-none border;
 }

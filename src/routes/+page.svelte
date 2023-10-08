@@ -31,15 +31,13 @@
 </script>
 
 <svelte:head>
-	<title>Moonquakes, Visualized</title>
+	<title>Moonquakes XPlorer</title>
 </svelte:head>
 
 <div class="flex flex-col h-full">
 	<Navbar bind:open />
-	<main class=" w-full h-full flex flex-row border-red-500 border">
-		<div class="w-1/3">
-			<FilterMenu bind:open={open.filter} />
-		</div>
+	<main class=" w-full h-full flex flex-row border-box">
+		<FilterMenu bind:open={open.filter} />
 		{#if open.about}
 			<AboutScreen bind:open={open.about} />
 		{:else if open.tool}
@@ -49,7 +47,7 @@
 		{:else if open.loading}
 			<LoadingScreen bind:open={open.loading} />
 		{/if}
-		<div class="w-2/3">
+		<div class="w-2/3 h-full overflow-hidden flex-initial">
 			<svelte:component this={Moon} />
 		</div>
 	</main>
