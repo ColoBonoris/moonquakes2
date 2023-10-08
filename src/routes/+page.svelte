@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import FilterMenu from '$lib/components/Wrappers/FilterMenu.svelte';
 	import ToolScreen from '$lib/components/Wrappers/Full/ToolScreen.svelte';
@@ -26,7 +25,7 @@
 		about: false,
 		tool: false,
 		mission: false,
-		loading: false
+		loading: true
 	};
 </script>
 
@@ -34,10 +33,15 @@
 	<title>Moonquakes XPlorer</title>
 </svelte:head>
 
-<div class="flex flex-col h-full">
+<div class="flex flex-col h-full overflow-hidden">
 	<Navbar bind:open />
-	<main class=" w-full h-full flex flex-row border-box">
-		<FilterMenu bind:open={open.filter} />
+	<main class="relative w-full flex-1 flex flex-row overflow-hidden">
+		<div class="w-1/3 max-h-full overflow-y-scroll">
+			<FilterMenu />
+		</div>
+		<div class="w-2/3 h-full overflow-hidden flex-initial">
+			<svelte:component this={Moon} />
+		</div>
 		{#if open.about}
 			<AboutScreen bind:open={open.about} />
 		{:else if open.tool}
@@ -47,9 +51,6 @@
 		{:else if open.loading}
 			<LoadingScreen bind:open={open.loading} />
 		{/if}
-		<div class="w-2/3 h-full overflow-hidden flex-initial">
-			<svelte:component this={Moon} />
-		</div>
 	</main>
 	<!-- <Footer/> -->
 </div>

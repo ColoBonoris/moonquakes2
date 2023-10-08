@@ -13,7 +13,6 @@ import { RaycasterManager } from '$lib/three/labels/raycaster';
 import { getNormalizedData } from '$lib/utils/normalizeQuakeSample';
 import realSample from "$data/quakes_sample.json";
 import { canvasContainer, height, width } from '$lib/stores/containerStore';
-import { get } from 'svelte/store';
 
 let moon: Group;
 const moonEdges = createMoonEdges();

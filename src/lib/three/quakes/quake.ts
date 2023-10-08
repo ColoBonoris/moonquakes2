@@ -78,7 +78,7 @@ export function createMesh(radiusToOrigin: number, lat: number, lon: number, dep
 export class Quake {
   index: number;
   type: string;
-  //magnitude: number;
+  magnitude: number;
   latitude: number;
   longitude: number;
   depth: number;
@@ -92,7 +92,8 @@ export class Quake {
   constructor(data: QuakeData) {
     this.index = data.index;
     this.type = data.type;
-    //this.magnitude = data.magnitude;
+    //TODO: go back to -> this.magnitude = data.magnitude;
+    this.magnitude = 0;
     this.latitude = data.latitude;
     this.longitude = data.longitude;
     this.depth = data.depth;
@@ -126,6 +127,21 @@ export class Quake {
     this.pulse.lookAt(0, 0, 0);
     this.label = createLabel(data);
     this.isVisible = false;
+  }
+
+  getZone(){
+    // Calculates the moon face ("earthside" or "darkside") based on the latitude and longitude of the quake
+    let zone = "earthside";
+    if(this.latitude > 0){
+      zone = "darkside";
+    }
+    return zone;
+  }
+
+  isAI(){
+    // Returns true if the quake is an artificial quake, false otherwise
+    // TODO: Improve checking for artificial quakes
+    return this.type.startsWith("A");
   }
 
   toggleVisivility() {
