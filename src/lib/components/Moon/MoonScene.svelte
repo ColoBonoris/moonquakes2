@@ -20,6 +20,7 @@
 		onWindowResize,
 		toggleExternalBodys,
 		toggleAllQuakes,
+    toggleAllApollos,
 		quakesManager,
 		controlManager
 	} from '$lib/components/Moon/setup';
@@ -29,6 +30,7 @@
 	let enableContext = false;
 	let viewQuakes = false;
 	let labels: HTMLDivElement;
+  let viewApollos = false;
 
 	let clickedQuake: Quake | undefined;
 	let temp: Quake | undefined;
@@ -41,6 +43,10 @@
 		viewQuakes = !viewQuakes;
 		toggleAllQuakes();
 	}
+  function toggleApollos() {
+      viewApollos = !viewApollos;
+      toggleAllApollos();
+    }
 
 	function onQuakeClick(e: Quake) {
 		clickedQuake = e;
@@ -78,6 +84,7 @@
 		<button class="w-fit" title="Toggle moonquakes visibility" on:click={toggleQuakes}
 			><Radar size={36} color="hsl(0, 0%, 70%)" /></button
 		>
+    <button on:click={toggleApollos}></button>
 	</div>
 	<div class="left-top bg-gray-50 opacity-80 rounded">
 		{#if !!temp}
