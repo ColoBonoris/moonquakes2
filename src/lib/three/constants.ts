@@ -12,6 +12,9 @@ export const SUN_MOON_UNITS = EARTH_MOON_UNITS + SUN_EARTH_UNITS;
 
 export const RAYCASTER_CHANNEL = 3;
 
+// Sin uso de momento
+export const RAYCASTER_CHANNEL_APOLLO = 4;
+
 export const HELPER_LINES_COLOR = `hsl(${0}, ${0}%, ${75}%)`;
 
 export const HELPER_GENERAL_SIZE = 10;
