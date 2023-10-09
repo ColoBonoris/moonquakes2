@@ -55,3 +55,10 @@ export interface QuakeData {
     s_ec: number;
   }[];
 }
+
+export interface ApolloData {
+  mission: string,
+  date: string,
+  lat: number,
+  lon: number
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "mission": "Apollo 12 LM",
+    "date": "20 November 1969",
+    "lat": -3.94,
+    "lon": -21.20
+  },
+  {
+    "mission": "Apollo 13 SIVB",
+    "date": "15 April 1970",
+    "lat": -2.5550,
+    "lon": -27.8875
+  },
+  {
+    "mission": "Apollo 14 LM",
+    "date": "7 February 1971",
+    "lat": -3.42,
+    "lon": -19.67
+  },
+  {
+    "mission": "Apollo 14 SIVB",
+    "date": "4 February 1971",
+    "lat": -8.1810,
+    "lon": -26.0305
+  },
+  {
+    "mission": "Apollo 15 LM",
+    "date": "3 August 1971",
+    "lat": 26.36,
+    "lon": 0.25
+  },
+  {
+    "mission": "Apollo 15 SIVB",
+    "date": "29 July 1971",
+    "lat": -1.2897,
+    "lon": -11.8245
+  },
+  {
+    "mission": "Apollo 16 SIVB",
+    "date": "19 April 1972",
+    "lat": 1.9210,
+    "lon": -24.6230
+  },
+  {
+    "mission": "Apollo 17 SIVB",
+    "date": "10 December 1972",
+    "lat": -4.1681,
+    "lon": -12.3307
+  },
+  {
+    "mission": "Apollo 17 LM",
+    "date": "15 December 1972",
+    "lat": 19.97,
+    "lon": 30.49
+  }
+]
