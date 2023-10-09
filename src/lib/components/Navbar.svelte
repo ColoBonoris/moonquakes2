@@ -42,7 +42,7 @@
 		</button>
 	</div>
 	<div class="flex flex-row items-center">
-		<p class="text-gray-50 mr-4 text-lg">MOONQUAKES XPLORER</p>
+		<p class="text-gray-50 text-lg font-mono mr-4">LUNARQUAKES XPLORA</p>
 		<img src="/img/assets/moonquakes-logo.png" alt="logo" class=" max-w-[50px]" />
 	</div>
 </div>

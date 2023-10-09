@@ -8,8 +8,8 @@
 <FullWrapper bind:open>
 	<img class="max-w-sm" src="/img/assets/moonquakes-logo.png" alt="" />
 	<div class=" flex flex-col justify-center text-center text-gray-900 items-center">
-		<h1 class="text-4xl font-mono">MOONQUAKES</h1>
-		<h1 class="text-4xl font-mono">XPLORER</h1>
+		<h1 class="text-2xl text-gray-950 font-mono">LUNARQUAKES</h1>
+		<h1 class="text-5xl text-gray-950 font-mono">XPLORA</h1>
 	</div>
 	<button
 		class="main-button"
